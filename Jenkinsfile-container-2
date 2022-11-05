@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Run Vulnerability Scan') {
       steps {
-        sh 'grype grype-test:latest --scope AllLayers '
+        sh 'grype grype-test:latest --scope AllLayers'
       }
     }
     stage('Finally done') {
