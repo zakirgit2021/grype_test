@@ -1,0 +1,22 @@
+pipeline {
+  agent any
+  stages {
+   
+    
+    stage('Create container image') {
+      steps {
+        sh 'docker build --tag java-docker:latest .'
+      }
+    }
+    stage('Run Vulnerability Scan') {
+      steps {
+        sh 'grype java-docker:latest --scope AllLayers --fail-on=critical'
+      }
+    }
+    stage('Finally done') {
+      steps {
+        echo 'if I made it here, no critical items were found'
+      }
+    }
+  }
+}
