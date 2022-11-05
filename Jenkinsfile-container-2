@@ -1,6 +1,14 @@
 pipeline {
   agent any
   stages {
+  
+  stage('Delete image if exists') {
+      steps {
+        sh '''
+          docker rmi java-docker:latest
+        '''
+      }
+    }
     stage('Create image') {
       steps {
         sh 'docker build --tag grype-test:latest .'
