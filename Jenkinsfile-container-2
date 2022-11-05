@@ -1,17 +1,17 @@
 pipeline {
   agent any
   stages {
-    stage('Create container image') {
+    stage('Create image') {
       steps {
         sh 'docker build --tag grype-test:latest .'
       }
     }
-    stage('Run Vulnerability Scan') {
+    stage('Scan the Image ') {
       steps {
         sh 'grype grype-test:latest --scope AllLayers --fail-on=critical'
       }
     }
-    stage('Finally done') {
+    stage('Confimtion print ') {
       steps {
         echo 'if I made it here, no critical items were found'
       }
