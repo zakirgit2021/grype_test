@@ -1,14 +1,13 @@
-FROM python:3.7
+# syntax=docker/dockerfile:1
 
-WORKDIR /usr/src/app
+FROM openjdk:16-alpine3.13
 
-COPY test.jpg .
+WORKDIR /app
 
-COPY image.py .
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
 
-COPY requirements.txt .
+COPY src ./src
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-
-CMD ["python", "./image.py"]
+CMD ["./mvnw", "spring-boot:run"]
