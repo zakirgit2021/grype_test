@@ -3,12 +3,12 @@ pipeline {
   stages {
     stage('Create container image') {
       steps {
-        sh 'docker build --tag grype-Test:latest .'
+        sh 'docker build --tag grype-test:latest .'
       }
     }
     stage('Run Vulnerability Scan') {
       steps {
-        sh 'grype grype-Test:latest --scope AllLayers '
+        sh 'grype grype-test:latest --scope AllLayers '
       }
     }
     stage('Finally done') {
