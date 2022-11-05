@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Scan the Image ') {
       steps {
-        sh 'grype grype-test:latest --scope AllLayers'
+        sh 'grype grype-test:latest --scope AllLayers --fail-on=critical'
       }
     }
     stage('Confimtion print ') {
