@@ -2,10 +2,10 @@ pipeline {
   agent any
   stages {
   
-  stage('Delete image if exists') {
+  stage('Delete image with the smae name if exists') {
       steps {
         sh '''
-          docker rmi java-docker:latest
+          docker rmi grype-test:latest
         '''
       }
     }
