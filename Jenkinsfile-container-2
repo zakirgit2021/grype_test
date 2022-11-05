@@ -1,8 +1,6 @@
 pipeline {
   agent any
   stages {
-   
-    
     stage('Create container image') {
       steps {
         sh 'docker build --tag java-docker:latest .'
